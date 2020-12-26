@@ -3,21 +3,15 @@ package driver;
 public class DriverManagerFactory {
 
     public static DriverManager getManager(DriverManager.DriverType type) {
-
         DriverManager driverManager;
 
-        switch (type) {
-            case CHROME:
-                driverManager = new ChromeDriverManager();
-                break;
-            case FIREFOX:
-                driverManager = new FirefoxDriverManager();
-                break;
-            default:
-                driverManager = new ChromeDriverManager();
-                break;
+        if (type == DriverManager.DriverType.FIREFOX) {
+            driverManager = new FirefoxDriverManager();
+        } else {
+            driverManager = new ChromeDriverManager();
         }
-        return driverManager;
 
+        return driverManager;
     }
+
 }

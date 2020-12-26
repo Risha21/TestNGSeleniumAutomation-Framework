@@ -2,85 +2,52 @@ package resources;
 
 import driver.DriverManager;
 import driver.DriverManagerFactory;
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
-import pageObjects.LandingPage;
+import util.ConfigProvider;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-public class TestBase extends Base{
+public class TestBase {
 
-//    DriverManager driverManager;
-//    WebDriver driver;
-//    Properties properties;
-//    String url;
-//
-//    @BeforeTest
-//    public void beforeTest() {
-//        url = getBaseUrl();
-//        driverManager = DriverManagerFactory.getManager(DriverManager.DriverType.CHROME);
-//    }
-//
-//    @BeforeMethod
-//    public void beforeMethod() {
-//        driver = driverManager.getDriver();
-//    }
-//
-//    @AfterMethod
-//    public void afterMethod() {
-//        driverManager.quitDriver();
-//    }
-//
-//    public String getBaseUrl() {
-//        properties=new Properties();
-//        FileInputStream fis= null;
-//        try {
-//            fis = new FileInputStream("D:\\AutomationFramework\\src\\main\\java\\resources\\configuration.properties");
-//            properties.load(fis);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        return properties.getProperty("url");
-//    }
-//
-//    public void refreshPage() {
-//        driver.manage().window().maximize();
-//        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-//        driver.navigate().refresh();
-//    }
+    DriverManager driverManager;
+    WebDriver driver;
+    String url;
+    String browser;
 
     @BeforeMethod
-    public void setUp() throws Exception {
-        System.out.println("Before test");
-        initializeDriver();
-
-        driver.get(prop.getProperty("url"));
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        driver.navigate().refresh();
-               /* WebDriverWait wait=new WebDriverWait(driver,20);
-             wait.until(ExpectedConditions.alertIsPresent());
-                    Alert alert = driver.switchTo().alert();
-                    String alertMessage=driver.switchTo().alert().getText();
-                    alert.dismiss();
-                    System.out.println("alert message is:" +alertMessage);*/
+    public void beforeMethod() {
+        url = ConfigProvider.getInstance().getProperty("url");
+        browser = ConfigProvider.getInstance().getProperty("browser");
+        driverManager = DriverManagerFactory.getManager(map(browser));
+        driver = driverManager.getDriver();
+        driver.get(url);
+        refreshPage();
     }
 
     @AfterMethod
-    public void tearDown() throws Exception {
-        driver.quit();
+    public void afterMethod() {
+        driverManager.quitDriver();
     }
+
+    public void refreshPage() {
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver.navigate().refresh();
+    }
+
+    private DriverManager.DriverType map(String browser) {
+        String browserLowerCase = browser.toLowerCase();
+        if (browserLowerCase.equals("chrome")) {
+            return DriverManager.DriverType.CHROME;
+        } else if (browserLowerCase.equals("firebox") || browserLowerCase.equals("ff")) {
+            return DriverManager.DriverType.FIREFOX;
+        }
+
+        return DriverManager.DriverType.CHROME;
+    }
+
 }
 
 

@@ -5,9 +5,7 @@ import org.openqa.selenium.WebDriver;
 public abstract class DriverManager {
     public enum DriverType {
         CHROME,
-        FIREFOX,
-        IE,
-        SAFARI;
+        FIREFOX
     }
 
     protected WebDriver driver;
