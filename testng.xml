@@ -6,13 +6,14 @@
         <parameter name="password" value="test@123"/-->
         <classes>
             <class name="resources.coursesPage"/>
-            <class name="resources.VideosPage"/>
-            <class name="resources.InterviewGuidePage"/>
-            <class name="resources.PracticePage"/>
-            <class name="resources.BlogPage"/>
-            <class name="resources.AboutPage"/>
-            <class name="resources.ContactPage"/>
-            <class name="resources.RegisterPage"/>
+<!--            <class name="resources.VideosPage"/>-->
+<!--            <class name="resources.InterviewGuidePage"/>-->
+<!--            <class name="resources.PracticePage"/>-->
+<!--            <class name="resources.BlogPage"/>-->
+<!--            <class name="resources.AboutPage"/>-->
+<!--            <class name="resources.ContactPage"/>-->
+<!--            <class name="resources.RegisterPage"/>-->
+
 
 
 

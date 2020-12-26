@@ -44,15 +44,15 @@ public class RegisterPage extends TestBase {
         @DataProvider
         public Object[] getRegistrationData() {
             Object[][] data = new Object[2][4];
-            data[0][0] = "Swapan Anand";
-            data[0][1] = "swapan@gmail.com";
+            data[0][0] = "sh Anand";
+            data[0][1] = "h@gmail.com";
             data[0][2] = "risha21@";
             data[0][3] = "risha21@";
 
-            data[1][0] = "preya";
-            data[1][1] = "kreya@gmail.com";
-            data[1][2] = "kreya2@";
-            data[1][3] = "kreya2@";
+            data[1][0] = "eya";
+            data[1][1] = "eya@gmail.com";
+            data[1][2] = "eya2@";
+            data[1][3] = "eya2@";
 
             return data;
 
