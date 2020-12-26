@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Regression Suite" parallel="classes">
+    <test name="Test" >
+        <!-- parameter name="emailid" value="tester456@gmail.com"/>
+        <parameter name="password" value="test@123"/-->
+        <classes>
+            <class name="resources.coursesPage"/>
+            <class name="resources.VideosPage"/>
+            <class name="resources.InterviewGuidePage"/>
+            <class name="resources.PracticePage"/>
+            <class name="resources.BlogPage"/>
+            <class name="resources.AboutPage"/>
+            <class name="resources.ContactPage"/>
+            <class name="resources.RegisterPage"/>
+
+
+
+        </classes>
+    </test> <!-- Test -->
+
+</suite> <!-- Suite -->
